@@ -1,0 +1,46 @@
+# Ignore les fichiers et dossiers générés par PyCharm/IntelliJ
+.idea/
+*.iml
+
+# Ignore les environnements virtuels
+venv/
+.env/
+
+# Ignore les fichiers compilés Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore les fichiers de log
+*.log
+
+
+# Ignore les notebooks temporaires
+.ipynb_checkpoints/
+
+# Ignore les fichiers de données volumineuses (par exemple des CSVs ou des dumps de données)
+data/*.csv
+
+# Ignore les fichiers d'export ou de cache
+*.bak
+*.tmp
+*.swp
+
+# Ignore les dossiers spécifiques aux tests
+tests/.pytest_cache/
+tests/*.pyc
+
+# Ignore les fichiers de configuration d'outils de versioning ou de CI/CD
+*.coveragerc
+*.tox/
+*.nox/
+*.hypothesis/
+.coverage
+nosetests.xml
+*.dSYM/
+
+# Ignore les fichiers spécifiques à macOS
+.DS_Store
+
+# Ignore les fichiers spécifiques à Windows
+Thumbs.db

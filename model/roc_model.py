@@ -1,0 +1,43 @@
+import joblib
+import pandas as pd
+from sklearn.metrics import roc_curve, auc
+import matplotlib.pyplot as plt
+
+# Charger les modèles sauvegardés
+model = joblib.load("model/best_model_comparatif.pkl")
+vectorizer = joblib.load("model/vectorizer_comparatif.pkl")
+
+# Charger les données de test (même que celles utilisées après split)
+df = pd.read_csv("data/emails_cleaned.csv")  # ou ton chemin correct
+# Nettoyer comme dans le modèle
+df["label"] = df["label"].astype(str).str.strip().str.lower()
+df = df[df["label"].isin(["phishing", "spam", "legitimate", "ham", "safe email", "0", "1"])]
+df["label"] = df["label"].replace({
+    "phishing": 1, "spam": 1, "1": 1,
+    "legitimate": 0, "ham": 0, "safe email": 0, "0": 0
+}).astype(int)
+df["subject"] = df["subject"].fillna("")
+df["body"] = df["body"].fillna("")
+df["text"] = df["subject"] + " " + df["body"]
+X = vectorizer.transform(df["email"])  # Pas fit_transform ici
+y = df["label"]
+
+# Prédictions de probabilités
+y_proba = model.predict_proba(X)[:, 1]
+
+# Calcul des points de la courbe ROC
+fpr, tpr, _ = roc_curve(y, y_proba)
+roc_auc = auc(fpr, tpr)
+
+# Tracer la courbe ROC
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color="darkorange", lw=2, label=f"Random Forest (AUC = {roc_auc:.2f})")
+plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel("Taux de faux positifs (False Positive Rate)")
+plt.ylabel("Taux de vrais positifs (True Positive Rate)")
+plt.title("Courbe ROC - Modèle Random Forest")
+plt.legend(loc="lower right")
+plt.grid()
+plt.show()
