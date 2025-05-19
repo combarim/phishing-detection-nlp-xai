@@ -1,6 +1,7 @@
 
 document.getElementById("analyze-form").addEventListener("submit", function(e) {
   e.preventDefault();
+  document.getElementById("form-box").classList.add("spin-anim");
 
   const formData = new FormData(this);
 
@@ -14,16 +15,15 @@ document.getElementById("analyze-form").addEventListener("submit", function(e) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   })
-  .then(res => res.json())
-  .then(fullHtml => {
-      const container = document.getElementById('result-container');
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(fullHtml, 'text/html');
-      container.innerHTML = doc.body.innerHTML;
-      container.scrollIntoView({ behavior: "smooth" });
-
+  .then(response => response.json())
+  .then(data => {
+      console.log("Réponse de l'API :", data);
+      const iframe = document.getElementById('result-container');
+      iframe.src = "data:text/html;base64," + data.lime_html_base64;
+      document.getElementById("form-box").classList.remove("spin-anim");
   })
   .catch(err => {
-    console.error("Erreur API :", err);
+    console.error(err);
+    document.getElementById("form-box").classList.remove("spin-anim");
   });
 });

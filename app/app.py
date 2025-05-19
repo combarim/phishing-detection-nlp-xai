@@ -1,3 +1,5 @@
+import base64
+
 from flask import Flask, render_template, request, jsonify, Response
 
 import pandas as pd
@@ -19,6 +21,8 @@ def index():
 
 
 
+import os
+
 @app.route("/analyze", methods=["POST"])
 def analyze():
     data = request.get_json()
@@ -38,13 +42,17 @@ def analyze():
     explainer = LimeTextExplainer(class_names=class_names)
     exp = explainer.explain_instance(email, pipeline.predict_proba, num_features=10)
 
-    # Convert explanation to HTML string
-    html_content = exp.as_html()
+    # Récupérer le HTML sous forme de chaîne de caractères
+    html = exp.as_html()
 
-    print(html_content)
+    # Encodage base64 pour l'intégrer dans un data URI
+    html_base64 = base64.b64encode(html.encode()).decode()
 
-    # Return HTML content as response
-    return Response(html_content, mimetype='text/html')
+    return jsonify({
+        "label": prediction,
+        "percent": percent,
+        "lime_html_base64": html_base64
+    })
 
 
 if __name__ == "__main__":
