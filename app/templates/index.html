@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détection de Phishing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <div class="title-container">
+          <h2>Analyse de phishing</h2>
+          <div class="icon">
+            <!-- Par exemple une icône SVG ou image -->
+            <img src="{{ url_for('static', filename='phishing.png') }}" alt="Phishing Icon" />
+          </div>
+        </div>
+
+
+        <h1 class="title">Saisir l'email</h1>
+
+        <div class="form-container">
+            <form id="analyze-form">
+                <textarea name="email_object" rows="2" placeholder="Objet"></textarea>
+                <textarea name="email_text" rows="10" placeholder="Texte de l'email..."></textarea>
+                <button type="submit" class="button_analyse" id="analyze-button">Analyser</button>
+            </form>
+        </div>
+        <h1 class="title">Résultat de l'analyse</h1>
+        <div class="spin-container" id="result-container"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

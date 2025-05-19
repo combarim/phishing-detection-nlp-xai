@@ -1,0 +1,160 @@
+* {
+    font-family: Roboto, Arial, sans-serif;
+}
+
+body {
+    /*background-color: #f2f2f2;
+    #background-color: #F1EFEC;*/
+    background-color: #111122;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    padding: 20px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    resize: none;
+}
+
+textarea:focus {
+    border-radius: 10px;
+    box-shadow: 0 0 5px #c3b1b1;
+    outline: none;
+}
+
+
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    background: #e0f7fa;
+    border-radius: 5px;
+}
+
+
+.title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Open Sans', verdana, arial, sans-serif;
+    font-weight: bold;
+}
+
+.button_analyse {
+    text-align: center;
+    padding: 15px 50px;
+    background-color: #224170;
+    border: none;
+    margin-top: 15px;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button_analyse:hover {
+  background-color: #06c;
+  transform: scale(1.01);
+}
+
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+
+.form-container {
+    width: 1000px;
+    margin: auto;
+    background-color: #111122;
+    border-radius: 20px;
+    padding: 50px;
+    border: solid 3px white;
+}
+
+
+#result-container {
+    width: 1000px;
+    background: #ced2e1;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+
+
+.progress-bar {
+  width: 100%;
+  margin: 1em 0;
+}
+
+.result-bar-fill {
+    font-family: Alef;
+    font-weight: bold;
+}
+
+.result-label {
+  display: block;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+  color: #333;
+}
+
+.result-bar {
+  background-color: #e0e0e0;
+  border-radius: 1em;
+  overflow: hidden;
+  position: relative;
+}
+
+.result-bar-fill {
+  height: 100%;
+  background-color: #6ba4da;
+  transition: width 0.4s ease-in-out;
+    padding: 10px 30px;
+}
+
+
+.result-explanation {
+    font-family: Bahnschrift;
+    margin-top: 20px;
+}
+
+
+
+.title-container {
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 20px;
+}
+
+.title-container h2 {
+    margin: 0;
+    font-weight: bold;
+    color: white;
+    font-size: 50px;
+}
+
+.title-container .icon {
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: center;
+}
+
+.title-container .icon img {
+  width: 40px;
+  height: 40px;
+}
