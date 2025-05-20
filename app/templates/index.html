@@ -19,15 +19,18 @@
 
         <h1 class="title">Saisir l'email</h1>
 
-        <div class="form-container">
+        <div class="form-container" id="form-box">
             <form id="analyze-form">
                 <textarea name="email_object" rows="2" placeholder="Objet"></textarea>
                 <textarea name="email_text" rows="10" placeholder="Texte de l'email..."></textarea>
                 <button type="submit" class="button_analyse" id="analyze-button">Analyser</button>
             </form>
         </div>
+
         <h1 class="title">Résultat de l'analyse</h1>
-        <div class="spin-container" id="result-container"></div>
+
+        <iframe id="result-container"></iframe>
+
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
